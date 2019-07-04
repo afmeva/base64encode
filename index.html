@@ -7,7 +7,25 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>What's uuuuup!</h1>
-  
+  <input type="file" class="fileInput">
+
+  <code class="result"></code>
+  <script>
+    const fileInput = document.querySelector('.fileInput')
+    const box = document.querySelector('.result')
+
+    fileInput.addEventListener('change', ({target: { files }}) => {
+      const [file] = files
+      const reader = new FileReader()
+
+      reader.onload = () => {
+        const result = reader.result.split(',').pop()
+        console.log(result)
+        box.innerHTML = result
+      }
+
+      reader.readAsDataURL(file)
+    })
+  </script>
 </body>
-</html>
+</html> 
